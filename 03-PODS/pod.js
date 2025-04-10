@@ -17,5 +17,14 @@ kubectl run personal \
 --image=tsola2002/kube-image:latest \
 --port=80 
 
-// this will do port forwarding
-kubectl port-forward pod/helloworld 8080:80
+// this will do port forwarding as a follow up to the imperative command
+kubectl port-forward pod/personal 8080:80
+
+
+// POD MANAGEMENT COMMANDS
+
+// this will delete a pod 
+kubectl delete pod personal
+
+// this will run a pod using declarative command
+kubectl apply -f pod.yml

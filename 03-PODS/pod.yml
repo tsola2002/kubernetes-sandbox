@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: hello-world
+  name: personal
   labels:
-    name: hello-world
+    name: personal
 spec:
   containers:
-  - name: hello-world
-    image: amigoscode/kubernetes/hello-world
+  - name: personal
+    image: tsola2002/kube-image:latest
     resources:
       limits:
         memory: "128Mi"
