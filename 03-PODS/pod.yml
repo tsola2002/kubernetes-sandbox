@@ -11,12 +11,6 @@ spec:
     resources:
       limits:
         memory: "128Mi"
-        cpu: "500m"
-  - name: dashboard
-    image: tsola2002/kube-image:latest
-    resources:
-      limits:
-        memory: "128Mi"
-        cpu: "500m"      
+        cpu: "500m"    
     ports:
       - containerPort: 80

@@ -17,9 +17,9 @@ minikube delete
 
 // this will show you all contexts of kubernetes clusters on your system
 kubectl config get-contexts
- 
+
 // this will switch context to docker desktop version 
-kubectl config use - context docker - desktop
+kubectl config use-context docker-desktop
 
 // list all containers
 docker container list--format "table {{.ID}\t{{.Names}}"

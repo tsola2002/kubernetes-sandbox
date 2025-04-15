@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: personal
+  labels:
+    name: personal
+spec:
+  containers:
+  - name: personal
+    image: tsola2002/kube-image:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+  - name: dashboard
+    image: tsola2002/kube-image:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"      
+    ports:
+      - containerPort: 80

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personal
+spec:
+  selector:
+    matchLabels:
+      app: personal
+  template:
+    metadata:
+      labels:
+        app: personal
+    spec:
+      containers:
+      - name: personal
+        image: tsola2002/kube-image:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

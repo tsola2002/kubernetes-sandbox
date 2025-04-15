@@ -22,7 +22,6 @@ kubectl port-forward pod/personal 8080:80
 
 
 // POD MANAGEMENT COMMANDS
-
 kubectl get pods -w
 
 // this will delete a pod 
@@ -30,17 +29,17 @@ kubectl delete pod personal
 
 
 // this will run a pod using declarative command
-kubectl apply - f pod.yml 
+kubectl apply -f pod.yml 
 
 // this will get everything in all namespaces
 kubectl get all 
 kubectl get all - A 
 
 // this will retrieve pods in one particular namespace 
-kubectl get pod - n kube - system 
+kubectl get pod -n kube-system 
 
 // this will retrieve all namespaces
-kubectl get namspaces 
+kubectl get namespaces 
 
 // this will give information about a specific pod
 kubectl describe pod personal 
