@@ -26,6 +26,6 @@ docker container list--format "table {{.ID}\t{{.Names}}"
 
 // this will get running pods
 kubectl get pods
-kubectl get pods - A
+kubectl get pods -A
 
 

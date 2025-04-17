@@ -7,12 +7,12 @@ metadata:
 spec:
   containers:
   - name: personal
-    image: tsola2002/kube-image:latest
+    image: tsola2002/omatsola-repo:latest
     resources:
       limits:
         memory: "128Mi"
         cpu: "500m"
-  - name: dashboard
+  - name: personal2
     image: tsola2002/kube-image:latest
     resources:
       limits:

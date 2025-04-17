@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: personal
-    image: tsola2002/kube-image:latest
+    image: tsola2002/omatsola-repo:latest
     resources:
       limits:
         memory: "128Mi"

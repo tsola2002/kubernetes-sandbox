@@ -33,7 +33,7 @@ kubectl apply -f pod.yml
 
 // this will get everything in all namespaces
 kubectl get all 
-kubectl get all - A 
+kubectl get all -A 
 
 // this will retrieve pods in one particular namespace 
 kubectl get pod -n kube-system 

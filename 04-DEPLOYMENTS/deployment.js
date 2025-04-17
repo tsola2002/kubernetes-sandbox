@@ -2,7 +2,7 @@ kubectl api-resources
 
 
 // this will run a pod using declarative command
-kubectl apply - f deployment.yml
+kubectl apply -f deployment.yml
 
 // this will retrieve all deployments
 kubectl get deployments 
