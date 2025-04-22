@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: personal
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: personal
@@ -12,11 +12,11 @@ spec:
       labels:
         app: personal
       annotations:
-        kubernetes.io/change-cause: "tsola2002/kube-image:v2"
+        kubernetes.io/change-cause: "changed to tsola2002/omatsola-repo:v2"
     spec:
       containers:
       - name: personal
-        image: tsola2002/kube-image:v2
+        image: tsola2002/omatsola-repo:v2
         resources:
           limits:
             memory: "128Mi"
