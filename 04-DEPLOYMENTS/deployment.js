@@ -14,7 +14,7 @@ kubectl describe deployment personal
 kubectl delete deployment personal
 
 //REPLICA SET 
-kubectl api - resources 
+kubectl api-resources 
 
 kubectl get replicaset 
 
@@ -23,6 +23,6 @@ kubectl get rs
 // this will view details about aparticular replicaset 
 kubectl describe rs hello-world-34e33dw 
 
-kubectl port-forward deployment/hello-world 8081:80 
+kubectl port-forward deployment/personal 8081:80 
 
 kubectl describe rs hello-world

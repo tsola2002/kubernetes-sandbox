@@ -12,11 +12,11 @@ spec:
       labels:
         app: personal
       annotations:
-        kubernetes.io/change-cause: "changed to tsola2002/omatsola-repo:v2"
+        kubernetes.io/change-cause: "version 4 changed to tsola2002/omatsola-repo:v3"
     spec:
       containers:
       - name: personal
-        image: tsola2002/omatsola-repo:v2
+        image: tsola2002/omatsola-repo:v3
         resources:
           limits:
             memory: "128Mi"
