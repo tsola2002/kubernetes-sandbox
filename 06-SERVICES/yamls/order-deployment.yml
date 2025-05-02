@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy
+  name: order
 spec:
   replicas: 2
   revisionHistoryLimit: 20
@@ -12,23 +12,33 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: deploy
+      app: order
   template:
     metadata:
       labels:
-        app: deploy
-        environment: dev
-        tier: backend
-        department: engineering
-      annotations:
-        kubernetes.io/change-cause: "tsola2002/node-microservices:latest"
+        app: order
     spec:
       containers:
-      - name: deploy
-        image: tsola2002/node-microservices:latest
+      - name: order
+        image: tsola2002/order-service:latest
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 80
+        - containerPort: 8081
+          
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: order
+spec:
+  type: ClusterIP
+  selector:
+    app: order
+  ports:
+  - port: 8081
+    targetPort: 8081
+
