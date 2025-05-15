@@ -17,6 +17,16 @@ kubectl run personal \
 --image=tsola2002/kube-image:latest \
 --port=80 
 
+// this will interactively log into a running pod 
+kubectl exec - it hello - world-- bash
+kubectl exec - it hello - world-- sh
+
+// this will specify the container within the pod that you want to log in to
+kubectl exec - it hello - world - c hello - world-- sh
+
+// this will run a linux command as you log into the pod 
+kubectl exec  hello-world -- ps aux
+
 // this will do port forwarding as a follow up to the imperative command
 kubectl port-forward pod/personal 8080:80
 

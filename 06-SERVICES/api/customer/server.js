@@ -21,6 +21,7 @@ var router = express.Router();
 app.use(actuator())
 app.use(cors())
 
+// ENDPOINT TO DISPLAY CUSTOMER ARRAY
 router.get('/api/v1/customer', function(req, res) {
     res.json(customers);   
 });

@@ -23,6 +23,7 @@ kubectl get rs
 // this will view details about aparticular replicaset 
 kubectl describe rs hello-world-34e33dw 
 
-kubectl port-forward deployment/personal 8080:80 
+kubectl port - forward deployment / personal 8080: 80 
+kubectl port-forward deployment/customer 8080:80
 
 kubectl describe rs hello-world

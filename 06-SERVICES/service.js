@@ -1,33 +1,25 @@
-// this will build a docker image from the dockerfile in the node js microservice
-docker image build . -t customer-service
-docker image build. -t order-service
+// check the ip address of a pod 
+kubectl describe pod 4e43e2f 
 
-// this will run a docker container from the custom image we generated
-docker run--name customer - service - d - p 8084: 8080 customer-service
-docker run--name order - service - d - p 8081: 8081 order - service
+// this will show all services 
+kubectl get service 
 
-//setting up tags that will be pushed to docker hub
-docker tag customer - service:latest tsola2002 / node - microservices: latest
-docker tag order-service:latest tsola2002/order-service:latest
-
-// this will push our image to docker hub
-docker push tsola2002 / node - microservices: latest
-docker push tsola2002 / order - service: latest 
-
-kubectl apply - f deployment.yml
-
-kubectl port-forward deployment/customer 8080:8080
-
-//this will describe a pod
-kubectl describe pod order - 6d9bb675fd - rhdl2
-
-// use port-fowarding to test your customer pod
-kubectl port-forward deployment/customer 8080:8080
-
-// this will list all services for us
-kubectl get service
-kubectl get svc
-
+// this will show details about a service
 kubectl describe service order
 
-kubectl get endpoints
+//this will show us available pods along with their endpoint ip addresses
+kubectl get endpoint
+kubectl get ep 
+
+//this will give us the ip address of our master node
+minikube ip 
+minikube ip - n minikube - m02 
+
+// this will login to the master node 
+minikube ssh
+
+// this will send an api request from the master node to the worker node
+curl localhost: 30000 / api / v1 / customer
+
+// this will send api request to the second node
+curl 192.168.49.3:30000/api/v1/customer
