@@ -25,8 +25,8 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
-        # env:
-        #   - name: ORDER_SERVICE
-        #     value: 10.109.177.149:8081
+        env:
+          - name: ORDER_SERVICE
+            value: 10.109.177.149:8081
         ports:
         - containerPort: 8080
