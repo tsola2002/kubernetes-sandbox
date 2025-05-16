@@ -19,7 +19,6 @@ kubectl exec - it empty - dir - volume - 7dd565d64dd - mxrtm - c two-- sh
 
 
 // VOLUME HOST PATH 
-
 minikube ssh 
 
 cd var/log
