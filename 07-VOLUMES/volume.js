@@ -1,10 +1,13 @@
 // this will run a deployment along with a volume 
-kubectl apply - f empty - dir - volume.yml
+kubectl apply -f empty-dir-volume.yml
 
 
 // this will show you the logs of a container within a pod
-kubectl logs empty - dir - volume - 2edb12e - c one
-// nothing will show up because theres no process running
+kubectl logs empty-dir-volume - 2edb12e -c one
+// nothing will show up because theres no process running 
+
+// this will delete a deployment
+kubectl delete -f empty-dir-volume - 2edb12e
 
 
 // this will log into the pod with container name one and check for the volume 
@@ -27,5 +30,5 @@ cd var/log
 kubectl describe pod host - path - 4e2w3e4r 
 
 
-sudo mkdir / mnt / data 
+sudo mkdir /mnt/data 
 sudo sh -c "echo '"

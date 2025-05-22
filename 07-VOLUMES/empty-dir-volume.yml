@@ -40,8 +40,7 @@ spec:
             cpu: "500m"
         volumeMounts:
           - name: cache
-            mountPath: /foo
+            mountPath: /victoria
           # - name: thumbnails
           #   mountPath: /thumbnails
-        ports:
-        - containerPort: <Port>
+

@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { List, Button } from 'antd';
 import axios from "axios";
 
-const url = "/api/v1/customer"
+const url = "http://localhost:8080/api/v1/customer"
 
 function App() {
-  console.log(process.env.NODE_ENV);
+  console.log("NODE ENVIRONMENT", process.env.NODE_ENV);
   
   const [ customers, setCustomers ] = useState([]);
   const [ orders, setOrders ] = useState([]);

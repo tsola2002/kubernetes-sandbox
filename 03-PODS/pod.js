@@ -3,10 +3,12 @@ docker image build . -t personal
 
 
 // this will run a docker container from the custom image we generated
-docker run --name personal-website -d -p 8080:80 personal
+docker run--name personal - website - d - p 8080: 80 personal
+docker run --name react-ctd -p 3000:3000 react-image
 
 //setting up tags that will be pushed to docker hub
 docker tag personal:latest tsola2002/kube-image:latest
+docker tag react-image:latest tsola2002/kube-image:latest
 
 // this will push our image to docker hub
 docker push tsola2002/kube-image:latest
