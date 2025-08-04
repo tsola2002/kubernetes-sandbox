@@ -13,7 +13,9 @@ spec:
     spec:
       volumes:
       - name: cache
-        emptyDir: {}  
+        emptyDir: {}
+      - name: thumbnails
+        emptyDir: {} 
       containers:
       - name: one
         image: busybox
@@ -29,6 +31,8 @@ spec:
         volumeMounts:
           - name: cache
             mountPath: /foo
+          - name: thumbnails
+            mountPath: /thumbnails
       - name: two
         image: busybox
         command:
@@ -40,7 +44,7 @@ spec:
             cpu: "500m"
         volumeMounts:
           - name: cache
-            mountPath: /victoria
-          # - name: thumbnails
-          #   mountPath: /thumbnails
+            mountPath: /foo
+          - name: thumbnails
+            mountPath: /thumbnails
 

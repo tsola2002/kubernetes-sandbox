@@ -1,5 +1,13 @@
 //  MINIKUBE COMMANDS
 
+// REPOSITORY LINK
+https://github.com/tsola2002/kubernetes-sandbox.git
+
+
+
+// KUBERNETES OFFICIAL PAGE 
+https://kubernetes.io
+
 // this will check whether minikube is installed
 minikube version
 
@@ -14,6 +22,12 @@ minikube stop
 
 // this will delete a cluster
 minikube delete
+
+// this will display the ip address of the cluster
+minikube ip
+
+// this will check your kubectl version on your system
+kubectl version --client
 
 // this will show you all contexts of kubernetes clusters on your system
 kubectl config get-contexts

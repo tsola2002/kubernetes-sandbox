@@ -11,8 +11,8 @@ kubectl delete -f empty-dir-volume - 2edb12e
 
 
 // this will log into the pod with container name one and check for the volume 
-kubectl exec -it empty-dir-volume-7dd565d64dd-mxrtm -c one -- sh
-kubectl exec - it empty - dir - volume - 7dd565d64dd - mxrtm - c two-- sh
+kubectl exec -it emptydir-volume-59695bdc66-cb799 -c one -- sh
+kubectl exec -it emptydir-volume-59695bdc66-cb799 -c two -- sh
 
 // edit bar.txt in container one and try accessing it in container 2
 // create a new fille in container 2 then try accessing it in container 1 
@@ -27,7 +27,7 @@ minikube ssh
 cd var/log
 
 // describe the pod to see what the problem is
-kubectl describe pod host - path - 4e2w3e4r 
+kubectl describe pod host-path-4e2w3e4r 
 
 
 sudo mkdir /mnt/data 
