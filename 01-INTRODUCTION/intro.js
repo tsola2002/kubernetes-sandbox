@@ -22,6 +22,9 @@ minikube stop
 
 // this will delete a cluster
 minikube delete
+    
+// this will create another node
+minikube node add 
 
 // this will display the ip address of the cluster
 minikube ip
