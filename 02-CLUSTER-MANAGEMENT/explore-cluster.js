@@ -14,3 +14,6 @@ minikube node add
 // this will show the logs of all the nodes in your cluster
 minikube logs
 
+// this will show the logs for one particular node
+minikube logs --node=m02
+
