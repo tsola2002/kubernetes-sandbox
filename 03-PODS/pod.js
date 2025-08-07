@@ -5,7 +5,7 @@ kubectl get pods
 kubectl get pods -A
 
 // this will run a pod named (personal) via an imperative command 
-kubectl run personal \
+kubectl run my-website \
 --image=tsola2002/kube-image:latest \
 --port=80 
 

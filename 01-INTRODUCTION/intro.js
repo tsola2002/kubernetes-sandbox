@@ -29,6 +29,9 @@ minikube node add
 // this will display the ip address of the cluster
 minikube ip
 
+// this will display the ip address of a particular node
+minikube ip --node=m02
+
 // this will check your kubectl version on your system
 kubectl version --client
 
