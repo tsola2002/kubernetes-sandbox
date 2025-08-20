@@ -1,13 +1,19 @@
 // this will show you a list of pods
 kubectl get pods
 
+
+
 // this will show you a list of pods in all namespaces
 kubectl get pods -A
 
 // this will run a pod named (personal) via an imperative command 
 kubectl run my-website \
 --image=tsola2002/kube-image:latest \
---port=80 
+--port=80
+
+kubectl run my-website \
+--image=nginx:latest \
+--port=80
 
 // this will do port forwarding as a follow up to the imperative command
 kubectl port-forward pod/personal 8080:80
@@ -40,7 +46,7 @@ kubectl exec - it hello - world-- bash
 kubectl exec - it hello - world-- sh
 
 // this will specify the container within the pod that you want to log in to
-kubectl exec - it hello - world - c hello - world-- sh
+kubectl exec -it hello-world -c hello-world -- sh
 
 // this will run a linux command as you log into the pod 
 kubectl exec  hello-world -- ps aux
