@@ -1,3 +1,33 @@
+// STEP 1 TEST ALL 3 API ENDPOINTS
+node server.js
+
+// STEP 2 BUILD 2 IMAGES FOR THE 2 MICROSERVICES
+docker image build -t customer-service:latest .
+docker image build -t order-service:latest .
+
+// STEP 3 RUN THE 2 IMAGES AS DOCKER CONTAINERS
+docker run --name customer-service -d -p 8080:8080 customer-service:latest
+docker run --name order-service -d -p 8081:8081 order-service:latest
+
+
+// STEP 4 CREATE 2 REPOSITORIES ON DOCKER HUB SETUP DOCKER TAGS 
+// WHICH WILL BE PUSHED TO YOUR DOCKER HUB ACCOUNT
+docker tag customer-service:latest tsola2002/customer-app:latest
+docker tag order-service:latest tsola2002/order-app:latest
+
+docker push tsola2002/customer-app:latest
+docker push tsola2002/order-app:latest
+
+
+
+
+
+
+
+
+
+
+
 // check the ip address of a pod 
 kubectl describe pod 4e43e2f 
 
