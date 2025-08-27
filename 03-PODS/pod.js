@@ -1,6 +1,8 @@
 // this will show you a list of pods
 kubectl get pods
 
+
+
 // this will show you a list of pods in all namespaces
 kubectl get pods -A
 
@@ -16,7 +18,11 @@ kubectl get pod personal -o json
 // this will run a pod named (personal) via an imperative command 
 kubectl run my-website \
 --image=tsola2002/kube-image:latest \
---port=80 
+--port=80
+
+kubectl run my-website \
+--image=nginx:latest \
+--port=80
 
 // THIS WILL WATCH THE POD AND MONITOR THE STATUS OF THE POD
 kubectl get pods -w
