@@ -17,3 +17,16 @@ minikube logs
 // this will show the logs for one particular node
 minikube logs --node=m02
 
+// this will get all kubernetes objects in all namespaces
+kubectl get all
+
+// this will get all pods within one particular namespace
+kubectl get pod -n kube-system
+
+// this will get all kubernetes objects within one namespace
+kubectl get all -n kube-system
+
+// this will display all namespaces in your cluster
+kubectl get ns
+
+
