@@ -19,10 +19,61 @@ docker push tsola2002/customer-app:latest
 docker push tsola2002/order-app:latest
 
 
+//STEP 5 RUN 2 DEPLOYMENTS IN KUBERNETES AND CHECK THAT THE APPLICATION IS RUNNING
+kubectl apply -f customer-deployment.yml
+kubectl logs customer-34b6df
+kubectl get all
+kubectl port-forward deployment/customer
 
 
+// STEP 6 HARDCODE MICROSERVICE COMMUNICATION USING THE POD IP ADDRESSES
+// DESCRIBE THE POD AND RETRIEVE THE IP ADDRESS OF THE POD
+// ADD ENVIRONMENT VARIABLES TO YOUR CUSTOMER SERVICE
+kubectl describe pod-34dfav2b
+kubectl apply -f customer-deployment.yml
+
+// STEP 7 DELETE A POD AND RETEST THE APPLICATION
+kubectl delete pod pod-34dfav2b
+kubectl port-forward deployment/customer
+
+// STEP 8 CREATE AND CONFIGURE A CLUSTERIP SERVICE ON THE ORDER DEPLOYMENT
+// SETUP INCOMING PORT AND OUTGOING PORT WHICH WILL ROUTE TRAFFIC TO THE ASSOCIATED ORDER PODS
+# ---
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: order
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: order
+#   ports:
+#   - port: 8081
+#     targetPort: 8081
 
 
+kubectl apply -f order-deployment.yml
+kubectl get service
+kubectl describe service order
+
+// STEP 9 DISPLAY ALL ENDPOINTS AVAILABLE TO YOU
+kubectl get endpoints
+kubectl get ep
+
+
+// STEP 10 REPLACE CUSTOMER DEPLOYMENT WITH THE SERVICE IP ADDRESS
+env:
+    - name: ORDER_SERVICE
+      value: 10.109.177.149:8081
+
+kubectl port-forward deployment/customer
+
+
+// STEP 11 UPDATE YOUR CUSTOMER DEPLOYMENT TO USE A DNS NAME AS AN ENVIRONMENT VARIABLE
+env:
+    - name: ORDER_SERVICE
+      value: order:8081
 
 
 
