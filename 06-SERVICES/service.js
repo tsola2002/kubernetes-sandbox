@@ -32,18 +32,30 @@ kubectl port - forward deployment / order 8081: 8081
 kubectl get pods
 kubectl describe pod order-e4b23a1
 
-// STEP 10 REPLACE CUSTOMER DEPLOYMENT WITH THE SERVICE IP ADDRESS
+// STEP 7 DELETE THE NEW POD YOU CONFIGURED AND RETEST THE API
+kubectl delete pod order-e4b23a1
+
+
+// STEP 8 REPLACE CUSTOMER DEPLOYMENT WITH THE SERVICE IP ADDRESS
 env:
     - name: ORDER_SERVICE
       value: 10.109.177.149:8081
 
-kubectl port-forward deployment/customer
+kubectl apply -f oliveth-customer deployment
+kubectl get service
+kubectl describe service customer
+kubectl port-forward deployment/ customer
 
 
-// STEP 11 UPDATE YOUR CUSTOMER DEPLOYMENT TO USE A DNS NAME AS AN ENVIRONMENT VARIABLE
+// STEP 8 UPDATE YOUR CUSTOMER DEPLOYMENT TO USE A DNS NAME AS AN ENVIRONMENT VARIABLE
 env:
     - name: ORDER_SERVICE
       value: order:8081
+
+
+// SETUP A NODEPORT LIST IT AND DESCRIBE IT
+kubectl get service 
+kubectl describe svc customer-node
 
 
 
