@@ -12,19 +12,19 @@ docker run --name order-service -d -p 8081:8081 order-service:latest
 
 // STEP 4 CREATE 2 REPOSITORIES ON DOCKER HUB SETUP DOCKER TAGS 
 // WHICH WILL BE PUSHED TO YOUR DOCKER HUB ACCOUNT
-docker tag customer-service:latest tsola2002/customer-app:latest
-docker tag order-service:latest tsola2002/order-app:latest
+docker tag customer-service:latest tsola2002/customer-service:latest
+docker tag order-service:latest tsola2002/order-service:latest
 
-docker push tsola2002/customer-app:latest
-docker push tsola2002/order-app:latest
+docker push tsola2002/customer-service:latest
+docker push tsola2002/order-service:latest
 
 
 //STEP 5 RUN 2 DEPLOYMENTS IN KUBERNETES AND CHECK THAT THE APPLICATION IS RUNNING
-kubectl apply -f customer-deployment.yml
-kubectl logs customer-34b6df
-kubectl get all
-kubectl port-forward deployment/customer
-
+kubectl apply -f halima-customer-deployment.yml
+kubectl apply -f halima-order-deployment.yml
+kubectl get pods -w
+kubectl port-forward deployment/customer 8080:8080
+kubectl port-forward deployment/order 8081:8081
 
 // STEP 6 HARDCODE MICROSERVICE COMMUNICATION USING THE POD IP ADDRESSES
 // DESCRIBE THE POD AND RETRIEVE THE IP ADDRESS OF THE POD
@@ -56,6 +56,7 @@ kubectl port-forward deployment/customer
 kubectl apply -f order-deployment.yml
 kubectl get service
 kubectl describe service order
+kubectl apply -f halima-customer-deployment.yml
 
 // STEP 9 DISPLAY ALL ENDPOINTS AVAILABLE TO YOU
 kubectl get endpoints
@@ -75,8 +76,25 @@ env:
     - name: ORDER_SERVICE
       value: order:8081
 
+// STEP 12 CREATE A NODEPORT SERVICE BY ADDING A SERVICE TO YOUR CUSTOMER DEPLOMENTS
+apiVersion: v1
+kind: Service
+metadata:
+  name: customer-node
+spec:
+  selector:
+    app: customer
+  ports:
+  - port: 80
+    targetPort: 8080
+    nodePort: 30000
 
+kubectl apply -f customer-deployment-nodeport.yml
+kubectl get svc
+kubectl describe svc customer-node
 
+// STEP 13 ACCESS THE API THROUGH A NODE
+kubectl get nodes
 
 
 // check the ip address of a pod 
@@ -125,8 +143,8 @@ http://localhost:33101/api/v1/customer
 // this will delete a service 
 kubectl delete svc customer 
 
-// intteractively login to a pod
-kubectl exec - it order - a23ef5-- sh 
+// interactively login to a pod
+kubectl exec -it order-a23ef5 -- sh 
 
 
 // install curl from inside the pod 
