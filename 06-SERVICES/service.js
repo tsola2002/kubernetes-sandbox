@@ -118,8 +118,29 @@ kubectl get svc
 kubectl describe svc customer-node
 
 // STEP 13 ACCESS THE API THROUGH A NODE
+// DO THIS USING SSH TO LOGIN TO NODE
 kubectl get nodes
+minikube ip
+minikube ip -n minikube-m02
 
+// SEND A REQUEST FROM FIRST NODE TO SECOND NODE
+minikube ssh
+curl localhost:30000/api/v1/customer
+//ACCESS THE API FROM THE SECOND NODE
+curl 192.168.49.3:30000/api/v1/customer
+//ACCESS THE API FROM THE SECOND NODE
+curl 192.168.49.3:30000/api/v1/customer
+
+
+// STEP 14 LOGIN TO THE SECOND NODE AND SEND A REQUEST
+minikube ssh -n minikube-m02
+curl localhost:30000/api/v1/customer
+curl 192.168.49.2:30000/api/v1/customer
+
+
+// STEP 15 ACCESS THE SERVICE VIA MINIKUBE
+minikube service customer-node --url
+// copy the tunnel url and paste it in the browser
 
 // check the ip address of a pod 
 kubectl describe pod 4e43e2f 
