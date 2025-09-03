@@ -83,6 +83,7 @@ kind: Service
 metadata:
   name: customer-node
 spec:
+  type: NodePort
   selector:
     app: customer
   ports:
