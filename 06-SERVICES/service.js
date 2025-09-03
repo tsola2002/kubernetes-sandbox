@@ -18,11 +18,8 @@ docker tag order-service:latest tsola2002/order-service:latest
 docker push tsola2002/customer-service:latest
 docker push tsola2002/order-service:latest
 
-//STEP 5 RUN CUSTOMER AND ORDER MICROSERVICE AS A CLUSTER
-minikube status
-minikube start
 
-<<<<<<< HEAD
+
 //STEP 5 RUN 2 DEPLOYMENTS IN KUBERNETES AND CHECK THAT THE APPLICATION IS RUNNING
 kubectl apply -f halima-customer-deployment.yml
 kubectl apply -f halima-order-deployment.yml
@@ -68,23 +65,6 @@ kubectl get ep
 
 
 // STEP 10 REPLACE CUSTOMER DEPLOYMENT WITH THE SERVICE IP ADDRESS
-=======
-kubectl apply -f oliveth-customer-deployment.yml
-kubectl apply - f oliveth - order - deployment.yml
-
-kubectl port-forward deployment/customer 8080:80
-kubectl port - forward deployment / order 8081: 8081 
-
-// STEPS 6 HARDCODE POD
-kubectl get pods
-kubectl describe pod order-e4b23a1
-
-// STEP 7 DELETE THE NEW POD YOU CONFIGURED AND RETEST THE API
-kubectl delete pod order-e4b23a1
-
-
-// STEP 8 REPLACE CUSTOMER DEPLOYMENT WITH THE SERVICE IP ADDRESS
->>>>>>> 6dbd44bc6abaa0ac50b8355f00ec741980318b7c
 env:
     - name: ORDER_SERVICE
       value: 10.109.177.149:8081
@@ -95,10 +75,6 @@ kubectl describe service customer
 kubectl port-forward deployment/ customer
 
 
-// STEP 8 UPDATE YOUR CUSTOMER DEPLOYMENT TO USE A DNS NAME AS AN ENVIRONMENT VARIABLE
-env:
-    - name: ORDER_SERVICE
-      value: order:8081
 
 // STEP 12 CREATE A NODEPORT SERVICE BY ADDING A SERVICE TO YOUR CUSTOMER DEPLOMENTS
 apiVersion: v1
@@ -141,6 +117,8 @@ curl 192.168.49.2:30000/api/v1/customer
 // STEP 15 ACCESS THE SERVICE VIA MINIKUBE
 minikube service customer-node --url
 // copy the tunnel url and paste it in the browser
+
+
 
 // check the ip address of a pod 
 kubectl describe pod 4e43e2f 
