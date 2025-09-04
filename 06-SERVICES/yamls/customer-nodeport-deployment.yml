@@ -4,12 +4,6 @@ metadata:
   name: customer
 spec:
   replicas: 2
-  revisionHistoryLimit: 20
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
   selector:
     matchLabels:
       app: customer
@@ -20,14 +14,14 @@ spec:
     spec:
       containers:
       - name: customer
-        image: tsola2002/node-microservices:latest
+        image: tsola2002/customer-service:latest
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         env:
           - name: ORDER_SERVICE
-            value: 10.109.177.149:8081
+            value: 10.103.229.124:8081
         ports:
         - containerPort: 8080
           
@@ -38,6 +32,7 @@ kind: Service
 metadata:
   name: customer-node
 spec:
+  type: NodePort
   selector:
     app: customer
   ports:

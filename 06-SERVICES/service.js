@@ -73,7 +73,8 @@ env:
 kubectl apply -f oliveth-customer deployment
 kubectl get service
 kubectl describe service customer
-kubectl port-forward deployment/ customer
+kubectl port-forward deployment/order 8081:8081
+kubectl port-forward deployment/customer 8080:8080
 
 
 

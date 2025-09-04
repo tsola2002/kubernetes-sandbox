@@ -4,12 +4,6 @@ metadata:
   name: order
 spec:
   replicas: 2
-  revisionHistoryLimit: 20
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
   selector:
     matchLabels:
       app: order
