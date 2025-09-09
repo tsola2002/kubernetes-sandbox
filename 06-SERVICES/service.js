@@ -106,7 +106,7 @@ minikube ip -n minikube-m02
 minikube ssh
 curl localhost:30000/api/v1/customer
 //ACCESS THE API FROM THE SECOND NODE
-curl 192.168.49.3:30000/api/v1/customer
+curl 192.168.49.2:30000/api/v1/customer
 //ACCESS THE API FROM THE SECOND NODE
 curl 192.168.49.3:30000/api/v1/customer
 
@@ -121,6 +121,19 @@ curl 192.168.49.2:30000/api/v1/customer
 minikube service customer-node --url
 // copy the tunnel url and paste it in the browser
 
+
+//STEP 16 CREATE A REACT APPLICATION THAT WILL CONSUME THE NODEJS APPLICATION
+
+
+
+// APPLY THE CUSTOMER DEPLOYMENT AND FRONTEND WITH THE NEWLY CONFIGURED LOAD BALANCER SERVICE
+kubectl apply -f  customer-deployment-load-balancer.yml
+kubectl apply -f  frontend.yml
+kubectl get svc -w
+
+// OPEN A MINIKUBE TUNNEL WHICHWILL GIVE THE REACT APPLICATION AN EXTERNAL IP ADDRESS WHICH WOULD BE USED TO ACCESS THE APPLICATION
+minikube tunnel 
+// supply the password to your system to open the tunnel
 
 
 // check the ip address of a pod 
