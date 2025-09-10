@@ -122,18 +122,97 @@ minikube service customer-node --url
 // copy the tunnel url and paste it in the browser
 
 
-//STEP 16 CREATE A REACT APPLICATION THAT WILL CONSUME THE NODEJS APPLICATION
+//STEP 16 TEST THE NODEJS BACKEND
+cd 06-services/api/customer
+node server.js
+
+cd 06-services/api/order
+node server.js
+
+
+// STEP 17 TEST THE REACT FRONTEND
+cd 06-services/frontend
+npm run start
+
+
+// STEP 18 BUILD A DOCKER IMAGE FOR THE REACT FRONTEND APPLICATION
+docker image build -t frontend .
+
+// STEP 19 SETUP TAGS AND PUSH THE IMAGE TO YOUR DOCKER HUB ACCOUNT
+docker tag frontend:latest tsola2002/frontend:latest
+docker push tsola2002/frontend:latest
+
+// STEP 20 CREATE FRONTEND DEPLOYMENT FILE CALLED FRONTEND.YML ALONG WITH 
+// LOAD BALANCER SERVICE
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: tsola2002/frontend:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: LoadBalancer
+  selector:
+    app: frontend
+  ports:
+  - port: 80
+    targetPort: 80
 
 
 
-// APPLY THE CUSTOMER DEPLOYMENT AND FRONTEND WITH THE NEWLY CONFIGURED LOAD BALANCER SERVICE
-kubectl apply -f  customer-deployment-load-balancer.yml
+
+// STEP 21 APPLY THE CUSTOMER DEPLOYMENT AND FRONTEND WITH THE NEWLY CONFIGURED LOAD BALANCER SERVICE
 kubectl apply -f  frontend.yml
-kubectl get svc -w
+kubectl port-forward deployment/frontend 3000:80
 
-// OPEN A MINIKUBE TUNNEL WHICHWILL GIVE THE REACT APPLICATION AN EXTERNAL IP ADDRESS WHICH WOULD BE USED TO ACCESS THE APPLICATION
+
+// STEP 22 CHANGE CUSTOMER NODEPORT SERVICE TO A CLUSTER IP SERVICE
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: customer
+spec:
+  type: ClusterIP
+  selector:
+    app: customer
+  ports:
+  - port: 80
+    targetPort: 8080
+
+kubectl apply -f  customer-deployment.yml.yml  
+kubectl port-forward deployment/frontend 8080:8080
+
+// STEP 23 OPEN A MINIKUBE TUNNEL WHICHWILL GIVE THE REACT APPLICATION AN EXTERNAL IP ADDRESS WHICH WOULD BE USED TO ACCESS THE APPLICATION
 minikube tunnel 
 // supply the password to your system to open the tunnel
+
 
 
 // check the ip address of a pod 
