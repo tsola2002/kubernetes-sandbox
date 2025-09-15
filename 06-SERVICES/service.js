@@ -187,13 +187,7 @@ spec:
 
 
 
-// STEP 21 APPLY THE CUSTOMER DEPLOYMENT AND FRONTEND WITH THE NEWLY CONFIGURED LOAD BALANCER SERVICE
-kubectl apply -f  frontend.yml
-kubectl port-forward deployment/frontend 3000:80
-
-
-// STEP 22 CHANGE CUSTOMER NODEPORT SERVICE TO A CLUSTER IP SERVICE
-
+// STEP 21 CHANGE CUSTOMER NODEPORT SERVICE TO A CLUSTER IP SERVICE
 apiVersion: v1
 kind: Service
 metadata:
@@ -206,7 +200,11 @@ spec:
   - port: 80
     targetPort: 8080
 
-kubectl apply -f  customer-deployment.yml.yml  
+
+// STEP 22 APPLY THE CUSTOMER DEPLOYMENT AND FRONTEND WITH THE NEWLY CONFIGURED LOAD BALANCER SERVICE
+kubectl apply -f  customer-deployment.yml
+kubectl apply -f  frontend.yml
+kubectl port-forward deployment/frontend 3001:80
 kubectl port-forward deployment/frontend 8080:8080
 
 // STEP 23 OPEN A MINIKUBE TUNNEL WHICHWILL GIVE THE REACT APPLICATION AN EXTERNAL IP ADDRESS WHICH WOULD BE USED TO ACCESS THE APPLICATION
