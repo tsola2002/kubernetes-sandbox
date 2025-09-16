@@ -24,5 +24,8 @@ kubectl get cm nginx-conf -o yaml
 kubectl create cm config1 --from-literal=key1=value1 --from-literal=key2=value2
 
 
+// STEP 6 INJECT THE CONFIGMAP INTO  BUSYBOX POD
+kubectl apply -f config-map.yml
 
-
+// STEP 7 CHECK THE LOGS OF THE RUNNING POD AND LOOK FOR THE INJECTED CONFIG MAP
+kubectl logs config-map-df4esa -c config-map-env

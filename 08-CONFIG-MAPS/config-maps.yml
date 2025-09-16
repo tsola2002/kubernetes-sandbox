@@ -39,3 +39,56 @@ data:
           proxy_set_header X-Request-Id    $request_id;
       }
     }
+
+
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-map
+spec:
+  selector:
+    matchLabels:
+      app: config-map
+  template:
+    metadata:
+      labels:
+        app: config-map
+    spec:
+      containers:
+      - name: config-map-env
+        image: busybox
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        command:
+          - "/bin/sh"
+          - "-c"
+        args:
+          - "env && sleep 3600"
+        env:
+          - name: APP_VERSION
+            valueFrom:
+              configMapKeyRef:
+                name: app-properties
+                key: app-version
+          - name: APP_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: app-properties
+                key: app-name
+          - name: TEAM
+            valueFrom:
+              configMapKeyRef:
+                name: app-properties
+                key: team
+          - name: NGINX_CONF
+            valueFrom:
+              configMapKeyRef:
+                name: nginx-conf
+                key: nginx.conf
+
+
