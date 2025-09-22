@@ -144,7 +144,6 @@ docker push tsola2002/frontend:latest
 
 // STEP 20 CREATE FRONTEND DEPLOYMENT FILE CALLED FRONTEND.YML ALONG WITH 
 // LOAD BALANCER SERVICE
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -208,6 +207,7 @@ kubectl port-forward deployment/frontend 3001:80
 kubectl port-forward deployment/frontend 8080:8080
 
 // STEP 23 OPEN A MINIKUBE TUNNEL WHICHWILL GIVE THE REACT APPLICATION AN EXTERNAL IP ADDRESS WHICH WOULD BE USED TO ACCESS THE APPLICATION
+kubectl get svc -w
 minikube tunnel 
 // supply the password to your system to open the tunnel
 

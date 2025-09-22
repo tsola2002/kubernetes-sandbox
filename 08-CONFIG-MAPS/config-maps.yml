@@ -85,10 +85,5 @@ spec:
               configMapKeyRef:
                 name: app-properties
                 key: team
-          - name: NGINX_CONF
-            valueFrom:
-              configMapKeyRef:
-                name: nginx-conf
-                key: nginx.conf
 
 
