@@ -16,5 +16,14 @@ kubectl get secret mysecret-from-file -o yaml
 
 //STEP 4 DELETE A SECRET
 kubectl delete secret mysecret
+kubectl get secret
 
-// STEP 5 CONSUME A SECRET FROM A POD
+// STEP 5 CREATE A SECRET DECLARATIVELY
+kubectl apply -f shola-secret.yml
+kubectl get secret
+
+
+// STEP 6 ENCODE YOUR SECRET AND UPDATE IT IN YOUR YML FILE
+echo -n 'mysecretpassword' | base64
+kubectl apply -f shola-secret.yml
+kubectl get secret my-second-secret -o yaml
