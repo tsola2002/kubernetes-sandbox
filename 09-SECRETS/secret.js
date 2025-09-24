@@ -22,7 +22,6 @@ kubectl get secret
 kubectl apply -f shola-secret.yml
 kubectl get secret
 
-
 // STEP 6 ENCODE YOUR SECRET AND UPDATE IT IN YOUR YML FILE
 echo -n 'mysecretpassword' | base64
 kubectl apply -f shola-secret.yml
