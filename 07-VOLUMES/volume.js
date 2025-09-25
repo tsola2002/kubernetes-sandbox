@@ -1,3 +1,20 @@
+// STEP 3 LOGIN TO YOUR MASTER NODE AND CHECLOUT THE LOG FOLDER
+minikube ssh
+cd var/log
+
+// STEP 4 CREATE DECLARATION FILE FOR A HOSTPATH VOLUME
+kubectl apply -f host-path-volume.yml
+
+//STEP 5 LOGIN INTO THE POD AND CONFIRM THAT THE SAME SET OF FOLDERS IN THE NODE ARE ALSO PRESENT IN YOUR POD
+kubectl exec -it host-path-7558fc34-fds8j -- sh
+cd var/log
+
+// CREATE A FILE INSIDE THE POD
+sudo touch foo.bar
+
+
+
+
 // this will run a deployment along with a volume 
 kubectl apply -f empty-dir-volume.yml
 
