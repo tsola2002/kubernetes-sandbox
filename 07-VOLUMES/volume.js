@@ -16,19 +16,19 @@ sudo mkdir /mnt/data
 sudo sh - c "echo 'Hello PV & PVC - Kubernetes is Awesome' > /mnt/data/index.html"
 cat /mnt/data/indexedDB.html
 
-// STEP 6 REPLICATE THE SAME THING ON YOUR WORKER NODE
+// STEP 7 REPLICATE THE SAME THING ON YOUR WORKER NODE
 minikube ssh -n minikube-m02
 sudo mkdir /mnt/data
 sudo sh -c "echo 'Hello PV & PVC - Kubernetes is Awesome' > /mnt/data/index.html"
 cat/mnt/data/index.html
 
 
-// STEP 7 CREATE A MANIFEST THAT WILL CREATE A PERSISTENT VOLUME AND PERSISTENT VOLUME CLAIM
+// STEP 8 CREATE A MANIFEST THAT WILL CREATE A PERSISTENT VOLUME AND PERSISTENT VOLUME CLAIM
 kubectl apply -f pv-pvc.yml
 kubectl get pv
 kubectl describe pv mypvc
 
-// STEP 8 LOG INTO THE POD AND CHECK FOR THE VOLUME
+// STEP 9 LOG INTO THE POD AND CHECK FOR THE VOLUME
 kubectl exec -it pv-pvc7558fc34-fds8j -- sh 
 ls 
 cd usr/share/nginx/html
@@ -36,12 +36,20 @@ ls
 cat index.html
 
 
-// STEP 9 ADD A LOAD BALANCER SERVICE TO ACCESS THE VOLUME
+// STEP 10 ADD A LOAD BALANCER SERVICE TO ACCESS THE VOLUME
 kubectl apply - f pv-pvc.yml
 kubectl get svc
 
-// STEP 10 ADD A MINIKUBE TUNNEL TO ACCESS THE POD
+// STEP 11 ADD A MINIKUBE TUNNEL TO ACCESS THE POD
 minikube tunnel
+
+
+
+
+
+
+
+
 
 // CREATE A FILE INSIDE THE POD
 sudo touch foo.bar
