@@ -13,8 +13,6 @@ spec:
     spec:
       volumes:
       - name: cache
-        emptyDir: {}
-      - name: thumbnails
         emptyDir: {} 
       containers:
       - name: one
@@ -31,8 +29,6 @@ spec:
         volumeMounts:
           - name: cache
             mountPath: /foo
-          - name: thumbnails
-            mountPath: /thumbnails
       - name: two
         image: busybox
         command:
@@ -45,6 +41,4 @@ spec:
         volumeMounts:
           - name: cache
             mountPath: /foo
-          - name: thumbnails
-            mountPath: /thumbnails
 

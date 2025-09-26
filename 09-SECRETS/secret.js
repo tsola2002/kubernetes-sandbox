@@ -8,6 +8,7 @@ kubectl get secret
 kubectl get secret mysecret -o yaml
 kubectl describe secret mysecret
 
+
 // STEP 3 CREATE A SECRET FROM A FILE
 // CREATE A FILE CALLED SECRET BEFORE RUNNING THE COMMAND 
 kubectl create secret generic mysecret-from-file --from-file=secret

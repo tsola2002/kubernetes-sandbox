@@ -9,6 +9,40 @@ kubectl apply -f host-path-volume.yml
 kubectl exec -it host-path-7558fc34-fds8j -- sh
 cd var/log
 
+
+// STEP 6 LOGIN TO YOUR MASTER NODE AND CREATE A FILE THAT WILL BE SHARED ON VIA PERSISTENT VOLUME
+minikube ssh
+sudo mkdir /mnt/data
+sudo sh - c "echo 'Hello PV & PVC - Kubernetes is Awesome' > /mnt/data/index.html"
+cat /mnt/data/indexedDB.html
+
+// STEP 6 REPLICATE THE SAME THING ON YOUR WORKER NODE
+minikube ssh -n minikube-m02
+sudo mkdir /mnt/data
+sudo sh -c "echo 'Hello PV & PVC - Kubernetes is Awesome' > /mnt/data/index.html"
+cat/mnt/data/index.html
+
+
+// STEP 7 CREATE A MANIFEST THAT WILL CREATE A PERSISTENT VOLUME AND PERSISTENT VOLUME CLAIM
+kubectl apply -f pv-pvc.yml
+kubectl get pv
+kubectl describe pv mypvc
+
+// STEP 8 LOG INTO THE POD AND CHECK FOR THE VOLUME
+kubectl exec -it pv-pvc7558fc34-fds8j -- sh 
+ls 
+cd usr/share/nginx/html
+ls
+cat index.html
+
+
+// STEP 9 ADD A LOAD BALANCER SERVICE TO ACCESS THE VOLUME
+kubectl apply - f pv-pvc.yml
+kubectl get svc
+
+// STEP 10 ADD A MINIKUBE TUNNEL TO ACCESS THE POD
+minikube tunnel
+
 // CREATE A FILE INSIDE THE POD
 sudo touch foo.bar
 
