@@ -1,3 +1,25 @@
+// STEP 1 CREATE AN EMPTYDIR VOLUME
+kubectl apply -f empty-dir-volume.yml
+kubectl get pods -w
+
+
+//STEP 2 LOGIN INTO THE POD AND CHECK FOR THE VOLUME
+kubectl exec -it host-path-7558fc34-fds8j -c one -- sh
+cd /foo
+ls
+cat bar.txt
+vi bar.txt 
+cat bar.txt
+
+// STEP 2B LOG INTO THE SECOND CONTAINER AND TRY TO ACCESS BAR.TXT
+kubectl exec -it host-path-7558fc34-fds8j -c two -- sh
+cd /foo
+ls
+cat bar.txt
+vi mofe.txt
+cat mofe2.txt
+
+
 // STEP 3 LOGIN TO YOUR MASTER NODE AND CHECLOUT THE LOG FOLDER
 minikube ssh
 cd var/log
@@ -37,7 +59,7 @@ cat index.html
 
 
 // STEP 10 ADD A LOAD BALANCER SERVICE TO ACCESS THE VOLUME
-kubectl apply - f pv-pvc.yml
+kubectl apply -f pv-pvc.yml
 kubectl get svc
 
 // STEP 11 ADD A MINIKUBE TUNNEL TO ACCESS THE POD

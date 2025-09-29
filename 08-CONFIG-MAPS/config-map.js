@@ -31,3 +31,5 @@ kubectl apply -f config-map.yml
 
 // STEP 8 CHECK THE LOGS OF THE RUNNING POD AND LOOK FOR THE INJECTED CONFIG MAP
 kubectl logs config-map-df4esa -c config-map-env
+
+
