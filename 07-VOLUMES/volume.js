@@ -35,7 +35,7 @@ cd var/log
 // STEP 6 LOGIN TO YOUR MASTER NODE AND CREATE A FILE THAT WILL BE SHARED ON VIA PERSISTENT VOLUME
 minikube ssh
 sudo mkdir /mnt/data
-sudo sh - c "echo 'Hello PV & PVC - Kubernetes is Awesome' > /mnt/data/index.html"
+sudo sh -c "echo 'Hello PV & PVC - Kubernetes is Awesome' > /mnt/data/index.html"
 cat /mnt/data/indexedDB.html
 
 // STEP 7 REPLICATE THE SAME THING ON YOUR WORKER NODE
@@ -43,6 +43,7 @@ minikube ssh -n minikube-m02
 sudo mkdir /mnt/data
 sudo sh -c "echo 'Hello PV & PVC - Kubernetes is Awesome' > /mnt/data/index.html"
 cat/mnt/data/index.html
+
 
 
 // STEP 8 CREATE A MANIFEST THAT WILL CREATE A PERSISTENT VOLUME AND PERSISTENT VOLUME CLAIM
