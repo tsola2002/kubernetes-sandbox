@@ -9,6 +9,10 @@ cd /foo
 ls
 cat bar.txt
 vi bar.txt 
+// type i to enter INSERT MODE
+// TYPE YOUR NAME IN THE EDITOR
+// type esc to exit INSERTMODE
+// type :wq to SAVE AND QUIT the vi editor
 cat bar.txt
 
 // STEP 2B LOG INTO THE SECOND CONTAINER AND TRY TO ACCESS BAR.TXT
@@ -17,6 +21,10 @@ cd /foo
 ls
 cat bar.txt
 vi mofe.txt
+// type i to enter INSERT MODE
+// TYPE YOUR NAME IN THE EDITOR
+// type esc to exit INSERTMODE
+// type :wq to SAVE AND QUIT the vi editor
 cat mofe2.txt
 
 
@@ -36,7 +44,7 @@ cd var/log
 minikube ssh
 sudo mkdir /mnt/data
 sudo sh -c "echo 'Hello PV & PVC - Kubernetes is Awesome' > /mnt/data/index.html"
-cat /mnt/data/indexedDB.html
+cat /mnt/data/index.html
 
 // STEP 7 REPLICATE THE SAME THING ON YOUR WORKER NODE
 minikube ssh -n minikube-m02
