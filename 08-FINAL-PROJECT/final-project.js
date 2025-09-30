@@ -10,12 +10,12 @@ docker image ls
 
 // STEP 3 RUN BOTH IMAGES AS DOCKER CONTAINERS
 docker run --name customer-java-app  -d -p 8080:8080 customer-java-app
-docker run --name order-java-app  -d -p 8080:8080 order-java-app
+docker run --name order-java-app  -d -p 8081:8081 order-java-app
 
 // STEP 4 CREATE 2 REPOSITORIES FOR CUSTOMER AND ORDER MICROSERVICE 
 // LINK THE REPOSITORIES PUSH THE IMAGES TO DOCKER HUB
 docker tag customer-java-app:latest tsola2002/customer-java-app:latest
-docker tag order - java - app:latest tsola2002 / order - java - app: latest 
+docker tag order-java-app:latest tsola2002/order-java-app:latest 
 
 docker push tsola2002/customer-java-app:latest
 docker push tsola2002/customer-java-app:latest
