@@ -57,6 +57,8 @@ cat/mnt/data/index.html
 // STEP 8 CREATE A MANIFEST THAT WILL CREATE A PERSISTENT VOLUME AND PERSISTENT VOLUME CLAIM
 kubectl apply -f pv-pvc.yml
 kubectl get pv
+kubectl get pvc
+kubectl get svc
 kubectl describe pv mypvc
 
 // STEP 9 LOG INTO THE POD AND CHECK FOR THE VOLUME
@@ -113,7 +115,6 @@ kubectl exec -it emptydir-volume-59695bdc66-cb799 -c two -- sh
 
 // VOLUME HOST PATH 
 minikube ssh 
-
 cd var/log
 
 // describe the pod to see what the problem is

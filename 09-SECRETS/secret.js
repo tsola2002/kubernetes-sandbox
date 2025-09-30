@@ -32,6 +32,6 @@ kubectl get secret my - second - secret - o yaml
 kubectl apply -f shola-secret.yml 
 kubectl exec - it secret - 5def26 - 3ds5 - w4w2-- sh 
 env
-cd / etc / secrets
-cat api - token
+cd/etc/secrets
+cat api-token
 cat db-password
