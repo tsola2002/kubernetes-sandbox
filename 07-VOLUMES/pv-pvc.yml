@@ -73,7 +73,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: myapp
+    app: pv-pvc
   ports:
   - port: 80
     targetPort: 80

@@ -50,14 +50,16 @@ cat /mnt/data/index.html
 minikube ssh -n minikube-m02
 sudo mkdir /mnt/data
 sudo sh -c "echo 'Hello PV & PVC - Kubernetes is Awesome' > /mnt/data/index.html"
-cat/mnt/data/index.html
+cat /mnt/data/index.html
 
 
 
 // STEP 8 CREATE A MANIFEST THAT WILL CREATE A PERSISTENT VOLUME AND PERSISTENT VOLUME CLAIM
 kubectl apply -f pv-pvc.yml
 kubectl get pv
-kubectl describe pv mypvc
+kubectl get pvc
+kubectl get svc
+kubectl get pods -w
 
 // STEP 9 LOG INTO THE POD AND CHECK FOR THE VOLUME
 kubectl exec -it pv-pvc7558fc34-fds8j -- sh 
