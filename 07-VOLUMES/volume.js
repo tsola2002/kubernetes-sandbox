@@ -59,7 +59,11 @@ kubectl apply -f pv-pvc.yml
 kubectl get pv
 kubectl get pvc
 kubectl get svc
+<<<<<<< HEAD
 kubectl get pods -w
+=======
+kubectl describe pv mypvc
+>>>>>>> 88a1ad9a488e79bb1ff75ccbd15053401d136a58
 
 // STEP 9 LOG INTO THE POD AND CHECK FOR THE VOLUME
 kubectl exec -it pv-pvc7558fc34-fds8j -- sh 
@@ -115,7 +119,6 @@ kubectl exec -it emptydir-volume-59695bdc66-cb799 -c two -- sh
 
 // VOLUME HOST PATH 
 minikube ssh 
-
 cd var/log
 
 // describe the pod to see what the problem is
