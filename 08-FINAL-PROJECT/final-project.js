@@ -16,7 +16,9 @@ docker tag customer-java-app:latest tsola2002/customer-java-app:latest
 docker tag order-java-app:latest tsola2002/order-java-app:latest 
 
 docker push tsola2002/customer-java-app:latest
-docker push tsola2002 / customer - java - app: latest
+docker push tsola2002/customer-java-app:latest
 
 
-// STEP 5 CREATE 2 DEPLOYMENT FILES FOR CUSTOMER AND ORDER MICROSERVICE
+// STEP 5 CREATE 2 DEPLOYMENT AND A SERVICE FILES FOR CUSTOMER AND ORDER MICROSERVICE
+kubectl apply -f customer-deployment.yml
+kubectl apply -f order-deployment.yml
