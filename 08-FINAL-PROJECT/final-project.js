@@ -1,12 +1,10 @@
 // STEP 1 RUN AND TEST THE CUSTOMER AND ORDER MICROSERVICE
 localhost:8080/swagger-ui/index.html
 
-
 // STEP 2 GENERATE DOCKER IMAGES FOR BOTH CUSTOMER AND ORDER MICROSERVICE
 docker build -t customer-java-app . 
-docker build  -t order-java-app.
+docker build -t order-java-app .
 docker image ls
-
 
 // STEP 3 RUN BOTH IMAGES AS DOCKER CONTAINERS
 docker run --name customer-java-app  -d -p 8080:8080 customer-java-app
