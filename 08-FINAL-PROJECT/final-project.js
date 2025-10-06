@@ -23,3 +23,13 @@ docker push tsola2002/customer-java-app:latest
 // STEP 5 CREATE 2 DEPLOYMENT AND A SERVICE FILES FOR CUSTOMER AND ORDER MICROSERVICE
 kubectl apply -f customer-deployment.yml
 kubectl apply -f order-deployment.yml
+
+kubectl get pods
+kubectl get svc
+
+// STEP 6 TEST AND RUN THE APPLICATION
+kubectl port-forward pod/customer 8080:8080
+kubectl port-forward pod/order 8081:8081
+
+
+
