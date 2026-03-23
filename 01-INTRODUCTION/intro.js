@@ -4,7 +4,6 @@
 https://github.com/tsola2002/kubernetes-sandbox.git
 
 
-
 // KUBERNETES OFFICIAL PAGE 
 https://kubernetes.io
 
@@ -43,6 +42,10 @@ kubectl config use-context docker-desktop
 
 // list all containers
 docker container list--format "table {{.ID}\t{{.Names}}"
+
+
+// this will check that kubectl is running on your system
+kubctl version
 
 // this will get running pods
 kubectl get pods

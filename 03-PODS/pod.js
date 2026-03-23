@@ -1,7 +1,8 @@
 // this will show you a list of pods
 kubectl get pods
 
-
+// this will run and watch your pods
+kubectl get pods -w
 
 // this will show you a list of pods in all namespaces
 kubectl get pods -A
@@ -9,16 +10,21 @@ kubectl get pods -A
 // this will get a pod and output it as a wide format
 kubectl get pod personal -o wide
 
-// this will get a pod and output it as a yml file
-kubectl get pod personal -o wide
-
 // this will get a pod and output it as a json file
 kubectl get pod personal -o json
+
+// this will get a pod and output it as a yml file
+kubectl get pod personal -o yaml
 
 // this will run a pod named (personal) via an imperative command 
 kubectl run my-website \
 --image=tsola2002/kube-image:latest \
 --port=80
+
+kubectl get pods -w
+
+// this will do port forwarding as a follow up to the imperative command
+kubectl port-forward pod/my-website 8080:80
 
 kubectl run my-website \
 --image=nginx:latest \
@@ -27,8 +33,6 @@ kubectl run my-website \
 // THIS WILL WATCH THE POD AND MONITOR THE STATUS OF THE POD
 kubectl get pods -w
 
-// this will do port forwarding as a follow up to the imperative command
-kubectl port-forward pod/my-website 8080:80
 
 // this will give information about a specific pod
 kubectl describe pod my-website
@@ -93,7 +97,7 @@ kubectl get namespaces
 
 
 // this will output your pod in yaml
-kubectl get pod personal -o yaml
+
 kubectl get pod personal -o json 
 
 // DEGUGGING COMMADS

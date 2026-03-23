@@ -1,4 +1,4 @@
-// this will list all node in tyour cluster
+// this will list all node in your cluster
 kubectl get nodes
 
 // this will log you into your master node
@@ -7,12 +7,17 @@ minikube ssh
 // this will log you out of the node
 logout
 
-// this will create another node
-minikube node add 
+// this will login to the worker node
+minikube node add --node=m02
 
+
+minikube node add 
 
 // this will show the logs of all the nodes in your cluster
 minikube logs
+
+// this will show the logs of the worker node
+minikube logs --node=m02
 
 // this will show the logs for one particular node
 minikube logs --node=m02

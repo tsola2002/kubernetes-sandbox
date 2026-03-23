@@ -14,3 +14,11 @@ spec:
         cpu: "500m"    
     ports:
       - containerPort: 80
+  - name: personal2
+    image: tsola2002/omatsola-repo:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"    
+    ports:
+      - containerPort: 81    
