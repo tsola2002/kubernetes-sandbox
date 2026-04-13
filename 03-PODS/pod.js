@@ -79,9 +79,6 @@ kubectl exec -it hello-world -c hello-world -- sh
 kubectl exec  hello-world -- ps aux
 kubectl exec -it hello-world --bash
 
-
-
-
  
 
 // this will get everything in all namespaces
