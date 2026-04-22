@@ -3,7 +3,6 @@
 // REPOSITORY LINK
 https://github.com/tsola2002/kubernetes-sandbox.git
 
-
 // KUBERNETES OFFICIAL PAGE 
 https://kubernetes.io
 

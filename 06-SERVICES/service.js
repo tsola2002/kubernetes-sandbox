@@ -1,9 +1,11 @@
 // STEP 1 TEST ALL 3 API ENDPOINTS
 node server.js
 
+
 // STEP 2 BUILD 2 IMAGES FOR THE 2 MICROSERVICES
 docker image build -t customer-service:latest .
 docker image build -t order-service:latest .
+
 
 // STEP 3 RUN THE 2 IMAGES AS DOCKER CONTAINERS
 docker run --name customer-service -d -p 8080:8080 customer-service:latest
@@ -15,9 +17,9 @@ docker run --name order-service -d -p 8081:8081 order-service:latest
 docker tag customer-service:latest tsola2002/customer-service:latest
 docker tag order-service:latest tsola2002/order-service:latest
 
+
 docker push tsola2002/customer-service:latest
 docker push tsola2002/order-service:latest
-
 
 
 //STEP 5 RUN 2 DEPLOYMENTS IN KUBERNETES AND CHECK THAT THE APPLICATION IS RUNNING
@@ -27,15 +29,18 @@ kubectl get pods -w
 kubectl port-forward deployment/customer 8080:8080
 kubectl port-forward deployment/order 8081:8081
 
+
 // STEP 6 HARDCODE MICROSERVICE COMMUNICATION USING THE POD IP ADDRESSES
 // DESCRIBE THE POD AND RETRIEVE THE IP ADDRESS OF THE POD
 // ADD ENVIRONMENT VARIABLES TO YOUR CUSTOMER SERVICE
 kubectl describe pod-34dfav2b
 kubectl apply -f customer-deployment.yml
 
+
 // STEP 7 DELETE A POD AND RETEST THE APPLICATION
 kubectl delete pod pod-34dfav2b
 kubectl port-forward deployment/customer
+
 
 // STEP 8 CREATE AND CONFIGURE A CLUSTERIP SERVICE ON THE ORDER DEPLOYMENT
 // SETUP INCOMING PORT AND OUTGOING PORT WHICH WILL ROUTE TRAFFIC TO THE ASSOCIATED ORDER PODS
@@ -60,6 +65,7 @@ kubectl get service
 kubectl describe service order
 kubectl apply -f halima-customer-deployment.yml
 
+
 // STEP 9 DISPLAY ALL ENDPOINTS AVAILABLE TO YOU
 kubectl get endpoints
 kubectl get ep
@@ -76,7 +82,10 @@ kubectl describe service customer
 kubectl port-forward deployment/order 8081:8081
 kubectl port-forward deployment/customer 8080:8080
 
-
+// STEP 11 REPLACE CUSTOMER DEPLOYMENT WITH THE SERVICE IP ADDRESS WITH A DNS NAME
+env:
+    - name: ORDER_SERVICE
+      value: order:8081
 
 // STEP 12 CREATE A NODEPORT SERVICE BY ADDING A SERVICE TO YOUR CUSTOMER DEPLOMENTS
 apiVersion: v1
