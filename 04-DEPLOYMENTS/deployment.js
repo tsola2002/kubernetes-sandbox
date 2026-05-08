@@ -1,6 +1,9 @@
 // this will display all kubernetes objects in your cluster
 kubectl api-resources
 
+// this will imperatively create a deployment
+kubectl create deployment shola-deployment --image=nginx
+
 // this will run a deployment using declarative command
 kubectl apply -f deployment.yml
 
