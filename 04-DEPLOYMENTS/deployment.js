@@ -4,11 +4,14 @@ kubectl api-resources
 // this will imperatively create a deployment
 kubectl create deployment shola-deployment --image=nginx
 
-// this will run a deployment using declarative command
-kubectl apply -f deployment.yml
+// this will port forward your imperatively created deployment
+kubectl port-forward deployment/personal 8080:80
 
 // this will retrieve all deployments
-kubectl get deployments 
+kubectl get deployments
+
+// create a manifest file this will run a deployment using declarative command
+kubectl apply -f deployment.yml
 
 // this will port forward your deployment
 kubectl port-forward deployment/personal 8080:80
