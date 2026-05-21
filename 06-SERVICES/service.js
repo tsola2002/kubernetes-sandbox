@@ -59,6 +59,11 @@ kubectl port-forward deployment/customer
 #   - port: 8081
 #     targetPort: 8081
 
+// STEP 10 REPLACE CUSTOMER DEPLOYMENT WITH THE SERVICE IP ADDRESS
+env:
+    - name: ORDER_SERVICE
+      value: 10.109.177.149:8081
+
 
 kubectl apply -f order-deployment.yml
 kubectl get service
@@ -71,10 +76,7 @@ kubectl get endpoints
 kubectl get ep
 
 
-// STEP 10 REPLACE CUSTOMER DEPLOYMENT WITH THE SERVICE IP ADDRESS
-env:
-    - name: ORDER_SERVICE
-      value: 10.109.177.149:8081
+
 
 kubectl apply -f oliveth-customer deployment
 kubectl get service
@@ -86,6 +88,7 @@ kubectl port-forward deployment/customer 8080:8080
 env:
     - name: ORDER_SERVICE
       value: order:8081
+    
 
 // STEP 12 CREATE A NODEPORT SERVICE BY ADDING A SERVICE TO YOUR CUSTOMER DEPLOMENTS
 apiVersion: v1
@@ -114,7 +117,7 @@ minikube ip -n minikube-m02
 // SEND A REQUEST FROM FIRST NODE TO SECOND NODE
 minikube ssh
 curl localhost:30000/api/v1/customer
-//ACCESS THE API FROM THE SECOND NODE
+//ACCESS THE API FROM THE FIRST NODE
 curl 192.168.49.2:30000/api/v1/customer
 //ACCESS THE API FROM THE SECOND NODE
 curl 192.168.49.3:30000/api/v1/customer
@@ -126,17 +129,18 @@ curl localhost:30000/api/v1/customer
 curl 192.168.49.2:30000/api/v1/customer
 
 
-// STEP 15 ACCESS THE SERVICE VIA MINIKUBE
+// STEP 15 ACCESS THE SERVICE VIA MINIKUBE TUNNEL
 minikube service customer-node --url
 // copy the tunnel url and paste it in the browser
+127.0.0.1:50018/api/v1/customer
 
 
-//STEP 16 TEST THE NODEJS BACKEND
-cd 06-services/api/customer
-node server.js
+// STEP 18 LOGIN TO ORDER POD
+kubectl exec -it order-dffssd-4rtr4 -- sh
+apk add curl
+curl <SERVICE-IPADDRESS>/api/v1/customer
+curl customer /api/v1/customer
 
-cd 06-services/api/order
-node server.js
 
 
 // STEP 17 TEST THE REACT FRONTEND
@@ -232,47 +236,4 @@ kubectl get svc
 // this will show details about a service
 kubectl describe service order
 
-//this will show us available pods along with their endpoint ip addresses
-kubectl get endpoint
-kubectl get ep 
 
-// this will display all nodes on the cluster
-kubectl get nodes
-
-//this will give us the ip address of our master node
-minikube ip 
-minikube ip - n minikube - m02 
-
-// this will login to the master node 
-minikube ssh
-minikube ssh -n minikube-m02
-
-// this will send an api request from the master node to the worker node
-curl localhost:30000/api/v1/customer
-
-// this will send api request to the first and second node
-curl 192.168.49.3:30000/api/v1/customer
-curl 192.168.49.2:30000/api/v1/customer
-
-// this display details about the customer-node service
-minikube service customer-node --url 
-
-// access the nodeport after activating the tunnel
-http://127.0.0.1:50182/api/v1/customer 
-
-// this will display all nodes
-kubectl get nodes 
-
-http://localhost:33101/api/v1/customer
-
-// this will delete a service 
-kubectl delete svc customer 
-
-// interactively login to a pod
-kubectl exec -it order-a23ef5 -- sh 
-
-
-// install curl from inside the pod 
-apk add curl
-
-curl 247.80.111.1/api/v1/customer
