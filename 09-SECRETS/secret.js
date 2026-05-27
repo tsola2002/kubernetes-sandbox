@@ -26,7 +26,7 @@ kubectl get secret
 // STEP 6 ENCODE YOUR SECRET AND UPDATE IT IN YOUR YML FILE
 echo -n 'mysecretpassword' | base64
 kubectl apply -f shola-secret.yml
-kubectl get secret my - second - secret - o yaml
+kubectl get secret my-second-secret -o yaml
 
 // STEP 7 CREATE A MANIFEST FILE THAT WILL INJECT A SECRET AS A VOLUME AND ENVIRONMENT VARIABLE
 kubectl apply -f shola-secret.yml 

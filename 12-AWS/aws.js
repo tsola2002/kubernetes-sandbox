@@ -1,11 +1,14 @@
 // STEP 1: INSTALL AWS TOOLS 
 aws configure // stores aws acces key secret key and region
-kubectl version--client // kubernetes command line tool
+kubectl version --client // kubernetes command line tool
 eksctl version // aws eks automation tool(creates kubernetes cluster)
+
+// NB: IF EKSCTL DOES NOT EXIST INSTALL CHOCOLATEY, THEN INSTALL EKSCTL
+// OPEN POWERSHELL AS AN ADMINISTRATOR THEN USE 
 
 // STEP 2: CREATE EKS CLUSTER 
 eksctl create cluster \
---name microservices - cluster \
+--name microservices-cluster \
 --region us-east-1 \
 --nodegroup-name worker-nodes \ 
 --node-type t3.medium \ 
