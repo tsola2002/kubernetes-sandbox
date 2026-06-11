@@ -29,18 +29,21 @@ cat mofe2.txt
 
 
 // STEP 3 DELETE THE POD AND LOGIN AGAIN TO SEE WHETHER THE FILE STILL EXISTS
-kubectl exec - it host - path - 7558fc34 - fds8j - c two-- sh
+kubectl exec -it host-path-7558fc34-fds8j -c two -- sh
 
 
-// STEP 3B MOUNT 2 VOLUMES ONTO CONTAINER ONE 
+// STEP 3B MOUNT 2 VOLUMES ONTO CONTAINER ONE
+
 
 // STEP 4 LOGIN TO YOUR MASTER NODE AND CHECKOUT THE LOG FOLDER
 minikube ssh
 cd var/log
 
+
 // STEP 5 CREATE DECLARATION FILE FOR A HOSTPATH VOLUME
 // MOUNT THE var/log FOLDER AS A HOST PATH VOLUME
 kubectl apply -f host-path-volume.yml
+
 
 //STEP 6 LOGIN INTO THE POD AND CONFIRM THAT THE SAME SET OF FOLDERS IN THE NODE ARE ALSO PRESENT IN YOUR POD
 kubectl exec -it host-path-7558fc34-fds8j -- sh
@@ -53,12 +56,12 @@ sudo mkdir /mnt/data
 sudo sh -c "echo 'Hello PV & PVC - Kubernetes is Awesome' > /mnt/data/index.html"
 cat /mnt/data/index.html
 
+
 // STEP 8 REPLICATE THE SAME THING ON YOUR WORKER NODE
 minikube ssh -n minikube-m02
 sudo mkdir /mnt/data
 sudo sh -c "echo 'Hello PV & PVC - Kubernetes is Awesome' > /mnt/data/index.html"
 cat /mnt/data/index.html
-
 
 
 // STEP 8 CREATE A MANIFEST THAT WILL CREATE A PERSISTENT VOLUME AND PERSISTENT VOLUME CLAIM
@@ -83,21 +86,14 @@ cat index.html
 kubectl apply -f pv-pvc.yml
 kubectl get svc
 
+
 // STEP 11 ADD A MINIKUBE TUNNEL TO ACCESS THE POD
 minikube tunnel
 kubectl get svc
 
 
-
-
-
-
-
-
 // CREATE A FILE INSIDE THE POD
 sudo touch foo.bar
-
-
 
 
 // this will run a deployment along with a volume 

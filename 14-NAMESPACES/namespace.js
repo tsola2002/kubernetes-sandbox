@@ -1,0 +1,6 @@
+//STEP 1 COMPARE TO SEE THAT NAMESPACE COMMDS GIVES YOU THE SAME OUTPUT AS BEFORE
+kubectl get pods
+kubectl get pods - n default
+
+// SSTEP 2 LIST ALL NAMESPACES IN YOUR CLUSTER 
+kubectl get ns
