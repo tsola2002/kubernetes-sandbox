@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omatsola-nginx
+  namespace: development
+spec:
+  selector:
+    matchLabels:
+      app: omatsola-nginx
+  template:
+    metadata:
+      labels:
+        app: omatsola-nginx
+    spec:
+      containers:
+      - name: omatsola-nginx
+        image: <Image>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: <Port>
