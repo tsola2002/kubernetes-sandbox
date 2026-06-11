@@ -33,3 +33,7 @@ kubectl get pods -n development
 
 // STEP 8 THIS WILL DESCRIBE A NAMESPACE
 kubectl describe namespace development
+
+
+// STEP 9 RUN A POD AND PLACE IT INSIDE THE NAMESPACE AT THE SAME TIME
+ kubectl run nginx --image nginx:latest -n development
