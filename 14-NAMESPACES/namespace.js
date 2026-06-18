@@ -37,3 +37,22 @@ kubectl describe namespace development
 
 // STEP 9 RUN A POD AND PLACE IT INSIDE THE NAMESPACE AT THE SAME TIME
  kubectl run nginx --image nginx:latest -n development
+
+
+// STEP 10 ENABLE THE KUBERNETES DASHBOARD ADDON 
+minikube addons enable dashboard 
+
+
+// STEP 11 ADD A METRICS SERVER 
+minikube addons enable metrics - server 
+
+// STEP 12 OPEN THE DASHBOARD
+minkube dashboard 
+
+// STEP 13 VERIFY THAT DASHBOARD IS RUNNING
+kubectl get pods -n kubernetes-dashboard 
+
+
+
+
+
