@@ -1,7 +1,13 @@
+// STEP 0: SETUP IAM USER AND CONFIGURE ADMINISTRATIVE PRIVILEDGES
+
+
+
+
 // STEP 1: INSTALL AWS TOOLS 
 aws configure // stores aws acces key secret key and region
 kubectl version --client // kubernetes command line tool
 eksctl version // aws eks automation tool(creates kubernetes cluster)
+
 
 // NB: IF EKSCTL DOES NOT EXIST INSTALL CHOCOLATEY, THEN INSTALL EKSCTL
 // OPEN POWERSHELL AS AN ADMINISTRATOR THEN USE 
